@@ -1,5 +1,4 @@
-package logrus_test
-
+```go
 import (
 	gologrus "github.com/kordar/gologger_logrus"
 	"github.com/sirupsen/logrus"
@@ -12,3 +11,4 @@ func TestT1(t *testing.T) {
 	logger.Warnf("bbbbbbbbbbbbbbb")
 	logger.Error("eeeeeeeeeeee")
 }
+```

@@ -1,4 +1,4 @@
-package gologger_logrus
+package logrus
 
 import (
 	logger "github.com/kordar/gologger"
