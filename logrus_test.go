@@ -1,13 +1,13 @@
-package logrus_test
+package gologger_logrus_test
 
 import (
-	gologrus "github.com/kordar/gologger_logrus"
+	"github.com/kordar/gologger_logrus"
 	"github.com/sirupsen/logrus"
 	"testing"
 )
 
 func TestT1(t *testing.T) {
-	logger := gologrus.NewLogrusAdapt(logrus.New())
+	logger := gologger_logrus.NewLogrusAdapt(logrus.New())
 	logger.Info("aaaaaaaaaaaaaaa")
 	logger.Warnf("bbbbbbbbbbbbbbb")
 	logger.Error("eeeeeeeeeeee")
