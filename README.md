@@ -1,35 +1,36 @@
-# gologger_logrus
+# gologger-logrus
 
-包装`logrus`对象，实现[日志门面](https://github.com/kordar/gologger)接口
+A [logrus](https://github.com/sirupsen/logrus) adapter for [gologger](https://github.com/kordar/gologger).
 
-## 安装
+## Installation
 
-```go
-go get github.com/kordar/gologger_logrus v1.0.2
+```bash
+go get github.com/kordar/gologger_logrus
 ```
 
-## 初始化
+## Usage
 
 ```go
+package main
+
 import (
-	"bufio"
-	logger "github.com/kordar/gologger"
+	"github.com/kordar/gologger"
 	"github.com/kordar/gologger_logrus"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
-func TestInit(t *testing.T) {
-	logrusLog := logrus.New()
-	logrusLog.SetLevel(logrus.InfoLevel)
-	src, err := os.OpenFile(os.DevNull, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	if err != nil {
-		panic(err)
-	}
-	writer := bufio.NewWriter(src)
-	logrusLog.SetOutput(writer)
-	// 将logrusLog对象包装，设置即可
-	adapt := gologger_logrus.NewLogrusAdapt(logrusLog)
-	logger.InitGlobal(adapt)
+func main() {
+	// Create a logrus logger instance
+	l := logrus.New()
+
+	// Create the adapter
+	adapter := gologger_logrus.NewLogrusAdapt(l)
+
+	// Initialize gologger with the adapter
+	logger.InitGlobal(adapter)
+
+	// Use gologger
+	logger.Info("This message is logged via logrus")
+	logger.WithField("key", "value").Info("Message with field")
 }
 ```
